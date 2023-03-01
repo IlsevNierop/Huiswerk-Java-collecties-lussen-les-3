@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Random;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Scanner;
@@ -50,18 +51,42 @@ public class Main {
     }
 
 
+//MASTERMIND
+        Random rand = new Random();
+
+        HashSet<Integer> secretNumber = randomNumberGenerator(rand, secretNumber);
+        String stringNumber =  setToStringConverter(secretNumber);
+//
+//        System.out.println(stringNumber);
+//        feedback();
 
 
 
+        public static HashSet<Integer> randomNumberGenerator(Random rand, HashSet<Integer> secretNumber){
 
+            while (secretNumber.size() <4) {
+                int randNum = rand.nextInt(0, 9);
 
+                secretNumber.add(randNum);
+            }
 
-        /* deze regel mag je weg halen voor de bonus opdracht. Onderstaande code is voor de bonus opdracht.
-        HashSet<Integer> secretnumber = randomnumbergenerator();
-        String stringnumber =  setToStringConverter(secretnumber);
-        System.out.println(stringnumber);
-        feedback();
-         deze regel mag je weg halen voor de bonus opdracht */
+            return secretNumber;
+
+        }
+
+        public static String setToStringConverter(HashSet<Integer> secretNumber){
+
+            String[] secretNumerArray = secretNumber.toArray(new String[secretNumber.size()]);
+
+            for (int i = 0; i < secretNumber.size(); i++){
+                String stringNumber = "";
+                System.out.println(stringNumber);
+                stringNumber = stringNumber + (secretNumerArray[i].toString());
+                System.out.println(stringNumber);
+            }
+
+        }
+
 
 
     /*
