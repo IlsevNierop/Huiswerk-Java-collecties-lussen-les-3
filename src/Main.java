@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Scanner;
@@ -7,6 +8,54 @@ public class Main {
 
         // Hier mag je je code scrijven voor de hoofd-opdracht
 
+
+        Integer[] intList = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        String[] alpList = {"een", "twee", "drie", "vier", "vijf", "zes", "zeven", "acht", "negen"};
+        boolean playGame = true;
+        Scanner myScanner = new Scanner(System.in);
+        Translator input = new Translator(intList, alpList);
+
+        int inputNum = 0;
+        while (playGame) {
+            System.out.println("Wil je spelen? Typ in J of N");
+            String playAgain = myScanner.nextLine();
+            if (playAgain.charAt(0) == ('N') || playAgain.charAt(0) == ('n')) {
+                System.out.println("Dankjewel voor het spelen");
+                playGame = false;
+                break;
+            } else if (playAgain.charAt(0) == ('J') || playAgain.charAt(0) == ('j')) {
+                System.out.println("Kies een nummer tussen de 0 en 9:");
+                boolean askForInput = true;
+                while (askForInput) {
+                    try {
+                        inputNum = myScanner.nextInt(); //vangt de input op, pakt alle opeenvolgende ints tot er geen int meer is (dus bijv. een spatie / .  , / of letter)
+                        myScanner.nextLine(); //evt resterende string / spatie / getallen / . / ,s die overzijn - vangt ie met deze scanner op, zodat die niet nog blijft hangen
+                        if (inputNum >= 0 && inputNum <= 9) {
+                            System.out.println("Je hebt nummer " + Translator.translateToAlpNum(inputNum, input.numAlpMap) + " gekozen.");
+                            askForInput = false;
+                            break;
+                        } else {
+                            System.out.println("Dat is geen valide nummer, kies een nummer tussen 0 en 9.");
+                            continue;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Dat is geen getal, kies een nummer tussen 0 en 9.");
+                        myScanner.nextLine();// moet weer opnieuw scanner line doen - die vangt dan de verkeerde waarde op, anders blijft ie 'try' doen met de oude waarde.
+                    }
+                }
+            } else {
+                System.out.println("Dit is geen geldige keuze.");
+            }
+        }
+    }
+
+
+
+
+
+
+
+
         /* deze regel mag je weg halen voor de bonus opdracht. Onderstaande code is voor de bonus opdracht.
         HashSet<Integer> secretnumber = randomnumbergenerator();
         String stringnumber =  setToStringConverter(secretnumber);
@@ -14,7 +63,6 @@ public class Main {
         feedback();
          deze regel mag je weg halen voor de bonus opdracht */
 
-    }
 
     /*
      Deze methode is voor de bonus opdracht.
@@ -40,3 +88,4 @@ public class Main {
         System.out.println(feedback.toString());
     }
 }
+
