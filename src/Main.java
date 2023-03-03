@@ -6,9 +6,10 @@ public class Main {
     public static void main(String[] args) {
 
         // Hier mag je je code scrijven voor de hoofd-opdracht
-        // Numeric omzetten naar Alphabetic
 
-        //for loop bij class Translator baseert zich op lengte intlist - dus alplist kan ik gemakkelijk uitbreiden zonder problemen. AlpList uitgebreid voor Poortwachter bonus.
+        // Opdracht numeric omzetten naar Alphabetic
+
+        //AlpList heb ik uitgebreid voor de Poortwachter opdracht (zie onderaan) - de for loop bij class Translator baseert zich op lengte intlist - dus alplist kan ik gemakkelijk uitbreiden zonder problemen. AlpList uitgebreid voor Poortwachter bonus.
 
         Integer[] intList = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         String[] alpList = {"een", "twee", "drie", "vier", "vijf", "zes", "zeven", "acht", "negen", "tien", "elf", "twaalf", "dertien", "veertien", "vijftien", "zestien", "zeventien", "achttien", "negentien", "twintig"};
@@ -52,7 +53,7 @@ public class Main {
 
 
         //MASTERMIND bonus opdracht #1-4
-        //HashSet is niet nodig voor Mastermind, omdat de getallen niet uniek hoeven te zijn. En het geeft alle waardes gesorteerd terug - dat willen we niet.
+        //HashSet is niet nodig voor Mastermind, omdat het de waardes gesorteerd terug (altijd van laag naar hoog) - terwijl je het juist niet gesorteerd wilt zien, dat maakt het spel leuker.
         int[] secretNumberList = randomNumberGenerator();
 
         String stringNumber = setToStringConverter(secretNumberList);
@@ -70,8 +71,7 @@ public class Main {
     //Verder met MASTERMIND
     // Moet 4 unieke random nummers returnen - waarvan de nummers allemaal 9 of lager zijn.
 
-
-    //  Niet met HashSet gewerkt - omdat dat eigenlijk niet logisch is, want daar worden nummers gesorteerd. Daarom ArrayList en array methode gemaakt - ga nu gebruik maken van array.
+    //  Niet met HashSet gewerkt - omdat dat eigenlijk niet logisch is, want daar worden nummers gesorteerd. Daarom ArrayList en array methode gemaakt - ga gebruik maken van array, de arraylist is beneden uitgecomment.
     public static int[] randomNumberGenerator() {
         Random rand = new Random();
 //        HashSet<Integer> set = new HashSet<>(); direct een array gemaakt, zodat de nummers niet gesorteerd worden door HashSet
@@ -99,7 +99,6 @@ public class Main {
 
     public static String setToStringConverter(int[] secretNumberList) {
 
-
         String stringNumber = "";
 
         for (int i = 0; i < secretNumberList.length; i++) {
@@ -109,11 +108,6 @@ public class Main {
 
     }
 
-    //
-//    /*
-//     Deze methode is voor de bonus opdracht.
-//     */
-//
     public static void feedback(String stringNumber) {
         Scanner scanner = new Scanner(System.in);
         StringBuilder feedback = new StringBuilder();
@@ -195,8 +189,8 @@ public class Main {
 
         while (askForAnswer) {
             try {
-                answerNum = myScanner.nextInt(); //vangt de input op, pakt alle opeenvolgende ints tot er geen int meer is (dus bijv. een spatie / .  , / of letter)
-                myScanner.nextLine(); //evt resterende string / spatie / getallen / . / ,s die overzijn - vangt ie met deze scanner op, zodat die niet nog blijft hangen
+                answerNum = myScanner.nextInt();
+                myScanner.nextLine();
                 if (answerNum == alpList[indexList].length()) {
                     System.out.println("Gefeliciteerd, je hebt het goed geraden! Je mag door.");
                     askForAnswer = false;
@@ -207,7 +201,7 @@ public class Main {
                 }
             } catch (Exception e) {
                 System.out.println("Dat is geen juiste invoer, kies een getal. Probeer nogmaals: ");
-                myScanner.nextLine();// moet weer opnieuw scanner line doen - die vangt dan de verkeerde waarde op, anders blijft ie 'try' doen met de oude waarde.
+                myScanner.nextLine();
             }
         }
 
